@@ -1,0 +1,4 @@
+A calculator appliaction
+========================
+
+Based on gfxprim widgets.
