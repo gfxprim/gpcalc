@@ -16,7 +16,7 @@ gp_widget *edit;
 
 int clear(gp_widget_event *ev)
 {
-	if (ev->type != GP_WIDGET_EVENT_ACTION)
+	if (ev->type != GP_WIDGET_EVENT_WIDGET)
 		return 0;
 
 	gp_widget_tbox_clear(edit);
@@ -29,7 +29,7 @@ int do_eq(gp_widget_event *ev)
 	struct expr *expr;
 	struct expr_err err;
 
-	if (ev->type != GP_WIDGET_EVENT_ACTION)
+	if (ev->type != GP_WIDGET_EVENT_WIDGET)
 		return 0;
 
 	expr = expr_create(gp_widget_tbox_str(edit), NULL, &err);
@@ -47,7 +47,7 @@ int do_eq(gp_widget_event *ev)
 
 int do_append(gp_widget_event *ev)
 {
-	if (ev->type != GP_WIDGET_EVENT_ACTION)
+	if (ev->type != GP_WIDGET_EVENT_WIDGET)
 		return 0;
 
 	gp_widget_tbox_ins(edit, 0, GP_SEEK_END, ev->self->btn->label);
