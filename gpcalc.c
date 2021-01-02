@@ -2,7 +2,7 @@
 
 /*
 
-    Copyright (C) 2007-2020 Cyril Hrubis <metan@ucw.cz>
+    Copyright (C) 2007-2021 Cyril Hrubis <metan@ucw.cz>
 
  */
 
@@ -13,6 +13,12 @@
 static void *uids;
 
 gp_widget *edit;
+
+static const struct expr_var vars[] = {
+	{. name = "pi", .val = M_PI},
+	{. name = "e", .val = M_E},
+	{}
+};
 
 int clear(gp_widget_event *ev)
 {
@@ -32,7 +38,7 @@ int do_eq(gp_widget_event *ev)
 	if (ev->type != GP_WIDGET_EVENT_WIDGET)
 		return 0;
 
-	expr = expr_create(gp_widget_tbox_str(edit), NULL, &err);
+	expr = expr_create(gp_widget_tbox_str(edit), vars, &err);
 	if (!expr) {
 		gp_widget_tbox_printf(edit, "%i:%s", err.pos, err.err);
 		return 0;

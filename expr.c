@@ -101,7 +101,7 @@ static struct expr_fn fn2[] = {
 };
 
 
-static double *var_by_name(struct expr_var vars[], const char *name)
+static const double *var_by_name(const struct expr_var vars[], const char *name)
 {
 	unsigned int i;
 
@@ -116,7 +116,7 @@ static double *var_by_name(struct expr_var vars[], const char *name)
 	return NULL;
 }
 
-static const char *var_by_ptr(struct expr_var vars[], const void *ptr)
+static const char *var_by_ptr(const struct expr_var vars[], const void *ptr)
 {
 	unsigned int i;
 
@@ -441,12 +441,12 @@ static unsigned int count_elems(const char *str, struct expr_err *err)
  * Shunting yard + correctness checking.
  */
 struct expr *expr_create(const char *str,
-                         struct expr_var vars[],
+                         const struct expr_var vars[],
                          struct expr_err *err)
 {
 	unsigned int i = 0, s;
 	char buf[42];
-	void *ptr;
+	const void *ptr;
 	double f;
 
 	unsigned int elem_cnt = count_elems(str, err);

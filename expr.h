@@ -68,12 +68,12 @@ struct expr_elem {
 		double f;
 		double (*fn1)(double f);
 		double (*fn2)(double f1, double f2);
-		double *var;
+		const double *var;
 	};
 };
 
 struct expr {
-	struct expr_var *vars;
+	const struct expr_var *vars;
 	unsigned int stack;
 	struct expr_elem elems[];
 };
@@ -87,7 +87,7 @@ struct expr {
  * When an ill formed expression is encountered err is filled and NULL is returned.
  */
 struct expr *expr_create(const char *expr,
-                         struct expr_var vars[],
+                         const struct expr_var vars[],
                          struct expr_err *err);
 
 /*
