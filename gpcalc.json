@@ -1,4 +1,5 @@
 {
+ "version": 1,
  "rows": 2,
  "widgets": [
   {
@@ -15,15 +16,15 @@
    "widgets": [
     {
      "type": "button",
-     "label": "2nd",
+     "label": "<",
      "align": "fill",
-     "on_event": "do_append"
+     "on_event": "prev"
     },
     {
      "type": "button",
-     "label": "xx",
+     "label": "sqrt(",
      "align": "fill",
-     "on_event": "clear"
+     "on_event": "do_append"
     },
     {
      "type": "button",
@@ -135,21 +136,21 @@
     },
     {
      "type": "button",
+     "label": ">",
+     "align": "fill",
+     "on_event": "next"
+    },
+    {
+     "type": "button",
      "label": "C",
      "align": "fill",
      "on_event": "clear"
     },
     {
      "type": "button",
-     "label": "sqrt(",
+     "label": "<-",
      "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": "^",
-     "align": "fill",
-     "on_event": "do_append"
+     "on_event": "do_backspace"
     },
     {
      "type": "button",

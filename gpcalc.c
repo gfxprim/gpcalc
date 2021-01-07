@@ -30,6 +30,16 @@ int clear(gp_widget_event *ev)
 	return 0;
 }
 
+int do_backspace(gp_widget_event *ev)
+{
+	if (ev->type != GP_WIDGET_EVENT_WIDGET)
+		return 0;
+
+	gp_widget_tbox_del(edit, -1, GP_SEEK_CUR, 1);
+
+	return 0;
+}
+
 int do_eq(gp_widget_event *ev)
 {
 	struct expr *expr;
