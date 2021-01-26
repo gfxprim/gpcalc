@@ -6,7 +6,8 @@
    "type": "tbox",
    "halign": "fill",
    "text": "",
-   "uid": "edit"
+   "uid": "edit",
+   "on_event": "edit_event"
   },
   {
    "rows": 4,

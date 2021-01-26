@@ -61,12 +61,24 @@ int do_eq(gp_widget_event *ev)
 	return 1;
 }
 
+int edit_event(gp_widget_event *ev)
+{
+	if (ev->type != GP_WIDGET_EVENT_WIDGET)
+		return 0;
+
+	if (ev->sub_type != GP_WIDGET_TBOX_TRIGGER)
+		return 0;
+
+	return do_eq(ev);
+}
+
+
 int do_append(gp_widget_event *ev)
 {
 	if (ev->type != GP_WIDGET_EVENT_WIDGET)
 		return 0;
 
-	gp_widget_tbox_ins(edit, 0, GP_SEEK_END, ev->self->btn->label);
+	gp_widget_tbox_ins(edit, 0, GP_SEEK_END, ev->self->button->label);
 
 	return 1;
 }
