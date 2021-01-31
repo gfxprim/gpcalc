@@ -48,7 +48,7 @@ int do_eq(gp_widget_event *ev)
 	if (ev->type != GP_WIDGET_EVENT_WIDGET)
 		return 0;
 
-	expr = expr_create(gp_widget_tbox_str(edit), vars, &err);
+	expr = expr_create(gp_widget_tbox_text(edit), vars, &err);
 	if (!expr) {
 		gp_widget_tbox_printf(edit, "%i:%s", err.pos, err.err);
 		return 0;
