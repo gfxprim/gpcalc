@@ -10,7 +10,7 @@
 #include <widgets/gp_widgets.h>
 #include "expr.h"
 
-static void *uids;
+static gp_htable *uids;
 
 gp_widget *edit;
 
