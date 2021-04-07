@@ -17,7 +17,7 @@
    "widgets": [
     {
      "type": "button",
-     "label": "<",
+     "btype": "prev",
      "align": "fill",
      "on_event": "prev"
     },
@@ -137,19 +137,19 @@
     },
     {
      "type": "button",
-     "label": ">",
+     "btype": "next",
      "align": "fill",
      "on_event": "next"
     },
     {
      "type": "button",
-     "label": "C",
+     "btype": "clear",
      "align": "fill",
      "on_event": "clear"
     },
     {
      "type": "button",
-     "label": "<-",
+     "btype": "backspace",
      "align": "fill",
      "on_event": "do_backspace"
     },
