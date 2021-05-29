@@ -12,7 +12,7 @@
   {
    "rows": 4,
    "cols": 6,
-   "uniform": 1,
+   "uniform": true,
    "border": "none",
    "widgets": [
     {
