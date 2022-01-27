@@ -1,4 +1,4 @@
-A calculator appliaction
+A calculator application
 ========================
 
 Based on gfxprim widgets.
