@@ -1,165 +1,47 @@
 {
- "version": 1,
- "rows": 2,
- "widgets": [
-  {
-   "type": "tbox",
-   "halign": "fill",
-   "text": "",
-   "uid": "edit",
-   "on_event": "edit_event"
-  },
-  {
-   "rows": 4,
-   "cols": 6,
-   "uniform": true,
-   "border": "none",
-   "widgets": [
-    {
-     "type": "button",
-     "btype": "prev",
-     "align": "fill",
-     "on_event": "prev"
-    },
-    {
-     "type": "button",
-     "label": "sqrt(",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": "(",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": ")",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": "7",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": "4",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": "1",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": "0",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": "8",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": "5",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": "2",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": ".",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": "9",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": "6",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": "3",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": "e",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": "+",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": "-",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": "*",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "label": "/",
-     "align": "fill",
-     "on_event": "do_append"
-    },
-    {
-     "type": "button",
-     "btype": "next",
-     "align": "fill",
-     "on_event": "next"
-    },
-    {
-     "type": "button",
-     "btype": "clear",
-     "align": "fill",
-     "on_event": "clear"
-    },
-    {
-     "type": "button",
-     "btype": "backspace",
-     "align": "fill",
-     "on_event": "do_backspace"
-    },
-    {
-     "type": "button",
-     "label": "=",
-     "align": "fill",
-     "on_event": "do_eq"
-    }
-   ]
-  }
- ]
+ "info": {"version": 1, "license": "GPL-2.1-or-later", "author": "Cyril Hrubis <metan@ucw.cz>"},
+ "layout": {
+  "rows": 2,
+  "widgets": [
+   {
+    "type": "tbox",
+    "halign": "fill",
+    "text": "",
+    "uid": "edit",
+    "on_event": "edit_event"
+   },
+   {
+    "rows": 4,
+    "cols": 6,
+    "uniform": true,
+    "border": "none",
+    "widgets": [
+     {"type": "button", "btype": "prev", "align": "fill", "on_event": "prev"},
+     {"type": "button", "label": "sqrt(", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "label": "(", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "label": ")", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "label": "7", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "label": "4", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "label": "1", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "label": "0", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "label": "8", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "label": "5", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "label": "2", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "label": ".", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "label": "9", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "label": "6", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "label": "3", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "label": "e", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "label": "+", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "label": "-", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "label": "*", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "label": "/", "align": "fill", "on_event": "do_append"},
+     {"type": "button", "btype": "next", "align": "fill", "on_event": "next"},
+     {"type": "button", "btype": "clear", "align": "fill", "on_event": "clear"},
+     {"type": "button", "btype": "backspace", "align": "fill", "on_event": "do_backspace"},
+     {"type": "button", "label": "=", "align": "fill", "on_event": "do_eq"}
+    ]
+   }
+  ]
+ }
 }
