@@ -78,7 +78,15 @@ int do_append(gp_widget_event *ev)
 	if (ev->type != GP_WIDGET_EVENT_WIDGET)
 		return 0;
 
-	gp_widget_tbox_ins(edit, 0, GP_SEEK_END, ev->self->button->label);
+	const char *label = ev->self->button->label;
+
+	if (!strcmp(label, "\u00d7"))
+		label = "*";
+
+	if (!strcmp(label, "\u00f7"))
+		label = "/";
+
+	gp_widget_tbox_ins(edit, 0, GP_SEEK_END, label);
 
 	return 1;
 }
