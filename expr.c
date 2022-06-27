@@ -28,6 +28,7 @@ enum expr_elem_type {
 	EXPR_DIV,
 	EXPR_ADD,
 	EXPR_SUB,
+	EXPR_POW,
 	EXPR_VAR,
 	EXPR_FN1,
 	EXPR_FN2,
@@ -318,6 +319,7 @@ static int is_op(unsigned int op)
 	case EXPR_SUB:
 	case EXPR_ADD:
 	case EXPR_MUL:
+	case EXPR_POW:
 	case EXPR_DIV:
 	case EXPR_START:
 		return 1;
@@ -334,6 +336,7 @@ static int check_number(unsigned int type)
 	case EXPR_SUB:
 	case EXPR_ADD:
 	case EXPR_MUL:
+	case EXPR_POW:
 	case EXPR_DIV:
 	case EXPR_SEP:
 		return 0;
@@ -368,6 +371,7 @@ static unsigned int max_stack(struct expr *self)
 		case EXPR_ADD:
 		case EXPR_SUB:
 		case EXPR_MUL:
+		case EXPR_POW:
 		case EXPR_DIV:
 		case EXPR_FN2:
 			stack--;
@@ -414,6 +418,7 @@ static unsigned int count_elems(const char *str, struct expr_err *err)
 		case '-':
 		case '/':
 		case '*':
+		case '^':
 			count++;
 			i++;
 		break;
@@ -498,7 +503,7 @@ struct expr *expr_create(const char *str,
 			}
 
 			if ((ptr = var_by_name(vars, buf))) {
-				elems[j].type    = EXPR_VAR;
+				elems[j].type = EXPR_VAR;
 				elems[j].var = ptr;
 				j++;
 
@@ -603,6 +608,18 @@ struct expr *expr_create(const char *str,
 			i++;
 
 			prev_type = EXPR_MUL;
+		break;
+		case '^':
+			if (is_op(prev_type)) {
+				ERR(err, "Unxpected opeartor", i);
+				goto err;
+			}
+
+			stack_op(op_stack, &op_i, elems, &j, EXPR_POW);
+
+			i++;
+
+			prev_type = EXPR_POW;
 		break;
 		case '(':
 			if (prev_type == EXPR_NUM || prev_type == EXPR_VAR) {
@@ -727,6 +744,9 @@ void expr_dump(struct expr *self)
 		case EXPR_MUL:
 			printf("*(2)");
 		break;
+		case EXPR_POW:
+			printf("^(2)");
+		break;
 		case EXPR_DIV:
 			printf("/(2)");
 		break;
@@ -807,6 +827,10 @@ double expr_eval(struct expr *self, struct expr_ctx *ctx)
 		break;
 		case EXPR_DIV:
 			buf[s - 2] /= buf[s - 1];
+			s--;
+		break;
+		case EXPR_POW:
+			buf[s - 2] = pow(buf[s - 2], buf[s - 1]);
 			s--;
 		break;
 		case EXPR_VAR:
