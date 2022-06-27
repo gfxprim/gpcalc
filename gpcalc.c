@@ -15,13 +15,38 @@ static gp_htable *uids;
 static gp_widget *edit;
 static gp_widget *layout_switch;
 
-static const struct expr_var vars[] = {
-	{. name = "pi", .val = M_PI},
-	{. name = "e", .val = M_E},
+static double last_val;
+
+static struct expr_var vars[] = {
+	{.name = "A"},
+	{.name = "B"},
+	{.name = "C"},
+	{.name = "D"},
+	{.name = "E"},
+	{.name = "F"},
+	{.name = "G"},
+	{.name = "H"},
+	{.name = "pi", .val = M_PI},
+	{.name = "e", .val = M_E},
 	{}
 };
 
 static struct expr_ctx ctx;
+
+int var_store(gp_widget_event *ev)
+{
+	if (ev->type != GP_WIDGET_EVENT_WIDGET)
+		return 0;
+
+	const char *label = ev->self->button->label;
+
+	if (label[0] < 'A' || label[0] > 'H')
+		return 0;
+
+	vars[label[0]-'A'].val = last_val;
+
+	return 0;
+}
 
 int clear(gp_widget_event *ev)
 {
@@ -29,6 +54,8 @@ int clear(gp_widget_event *ev)
 		return 0;
 
 	gp_widget_tbox_clear(edit);
+
+	last_val = 0;
 
 	return 0;
 }
@@ -57,7 +84,9 @@ int do_eq(gp_widget_event *ev)
 		return 0;
 	}
 
-	gp_widget_tbox_printf(edit, "%.16g", expr_eval(expr, &ctx));
+	last_val = expr_eval(expr, &ctx);
+
+	gp_widget_tbox_printf(edit, "%.16g", last_val);
 
 	expr_destroy(expr);
 
@@ -74,7 +103,6 @@ int edit_event(gp_widget_event *ev)
 
 	return do_eq(ev);
 }
-
 
 int do_append(gp_widget_event *ev)
 {
