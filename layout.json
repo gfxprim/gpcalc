@@ -11,35 +11,106 @@
     "on_event": "edit_event"
    },
    {
-    "rows": 4,
-    "cols": 6,
-    "uniform": true,
-    "border": "none",
+    "type": "switch",
+    "uid": "layout_switch",
+    "align": "fill",
     "widgets": [
-     {"type": "button", "btype": "prev", "align": "fill", "on_event": "prev"},
-     {"type": "button", "label": "sqrt(", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "label": "(", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "label": ")", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "label": "7", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "label": "4", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "label": "1", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "label": "0", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "label": "8", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "label": "5", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "label": "2", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "label": ".", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "label": "9", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "label": "6", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "label": "3", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "label": "e", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "label": "+", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "label": "-", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "label": "\u00d7", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "label": "\u00f7", "align": "fill", "on_event": "do_append"},
-     {"type": "button", "btype": "next", "align": "fill", "on_event": "next"},
-     {"type": "button", "btype": "clear", "align": "fill", "on_event": "clear"},
-     {"type": "button", "btype": "backspace", "align": "fill", "on_event": "do_backspace"},
-     {"type": "button", "label": "=", "align": "fill", "on_event": "do_eq"}
+     {
+      "rows": 4,
+      "cols": 6,
+      "uniform": true,
+      "border": "none",
+      "align": "fill",
+      "widgets": [
+       {"type": "button", "btype": "prev", "align": "fill", "on_event": "prev_layout"},
+       {"type": "button", "label": "sqrt(", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "(", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": ")", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "7", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "4", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "1", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "0", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "8", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "5", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "2", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": ".", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "9", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "6", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "3", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "e", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "+", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "-", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "\u00d7", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "\u00f7", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "btype": "next", "align": "fill", "on_event": "next_layout"},
+       {"type": "button", "btype": "clear", "align": "fill", "on_event": "clear"},
+       {"type": "button", "btype": "backspace", "align": "fill", "on_event": "do_backspace"},
+       {"type": "button", "label": "=", "align": "fill", "on_event": "do_eq"}
+      ]
+     },
+     {
+       "rows": 4,
+       "cols": 6,
+       "uniform": true,
+       "border": "none",
+       "align": "fill",
+       "widgets": [
+        {"type": "button", "btype": "prev", "align": "fill", "on_event": "prev_layout"},
+        {"type": "button", "label": "sin(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "cos(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "tan(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "exp(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "asin(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "acos(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "atan(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "exp2(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "sinh(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "cosh(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "tanh(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "log(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "asinh(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "acosh(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "atanh(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "log10(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "pi", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "ceil(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "floor(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "btype": "next", "align": "fill", "on_event": "next_layout"},
+        {"type": "button", "label": "abs(", "align": "fill", "on_event": "do_append"},
+	{"type": "button", "label": "trunc(", "align": "fill", "on_event": "do_append"},
+        {"type": "button", "label": "round(", "align": "fill", "on_event": "do_append"}
+       ]
+     },
+     {
+      "rows": 2,
+      "border": "none",
+      "rfill": "0, 1",
+      "align": "fill",
+      "widgets": [
+       {
+        "cols": 6,
+        "uniform": true,
+        "border": "none",
+        "halign": "fill",
+        "valign": "top",
+        "widgets": [
+         {"type": "button", "btype": "prev", "align": "hfill", "on_event": "prev_layout"},
+         null,
+	 null,
+	 null,
+	 null,
+	 {"type": "button", "btype": "next", "align": "hfill", "on_event": "next_layout"}
+        ]
+       },
+       {
+        "type": "radiobutton",
+	"align": "center",
+        "choices": ["degrees", "radians", "gradians"],
+        "selected": 0,
+	"on_event": "set_angle_unit"
+       }
+      ]
+     }
     ]
    }
   ]

@@ -62,14 +62,35 @@ struct expr_err {
 	unsigned int pos;
 };
 
+struct expr_fn {
+	union {
+		void *ptr;
+		double (*fn2)(double f1, double f2);
+		double (*fn1)(double f);
+	};
+	/* set if angle is input/output */
+	uint32_t a1_in:1;
+	uint32_t a2_in:1;
+	uint32_t a_out:1;
+};
+
 struct expr_elem {
 	uint8_t type;
 	union {
 		double f;
-		double (*fn1)(double f);
-		double (*fn2)(double f1, double f2);
+		const struct expr_fn *fn;
 		const double *var;
 	};
+};
+
+enum expr_angle_unit {
+	EXPR_DEGREES,
+	EXPR_RADIANS,
+	EXPR_GRADIANS,
+};
+
+struct expr_ctx {
+	enum expr_angle_unit angle_unit;
 };
 
 struct expr {
@@ -103,6 +124,6 @@ void expr_dump(struct expr *self);
 /*
  * Evaluates compiled expression. Returns floating point number.
  */
-double expr_eval(struct expr *self);
+double expr_eval(struct expr *self, struct expr_ctx *ctx);
 
 #endif /* EXPR_H__ */

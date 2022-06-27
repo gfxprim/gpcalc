@@ -37,18 +37,12 @@ enum expr_elem_type {
 	EXPR_START,
 };
 
-union expr_fn_ptr {
-	void *ptr;
-	double (*fn1)(double f);
-	double (*fn2)(double f1, double f2);
-};
-
-struct expr_fn {
+struct fn {
 	const char *name;
-	union expr_fn_ptr fn;
+	struct expr_fn fn;
 };
 
-static struct expr_fn fn1[] = {
+static struct fn fn1[] = {
 	{"abs",    {.fn1 = fabs}},
 
 	{"exp",    {.fn1 = exp}},
@@ -59,12 +53,12 @@ static struct expr_fn fn1[] = {
 	{"sqrt",   {.fn1 = sqrt}},
 	{"cbrt",   {.fn1 = cbrt}},
 
-	{"sin",    {.fn1 = sin}},
-	{"cos",    {.fn1 = cos}},
-	{"tan",    {.fn1 = tan}},
-	{"asin",   {.fn1 = asin}},
-	{"acos",   {.fn1 = acos}},
-	{"atan",   {.fn1 = atan}},
+	{"sin",    {.fn1 = sin, .a1_in = 1}},
+	{"cos",    {.fn1 = cos, .a1_in = 1}},
+	{"tan",    {.fn1 = tan, .a1_in = 1}},
+	{"asin",   {.fn1 = asin, .a_out = 1}},
+	{"acos",   {.fn1 = acos, .a_out = 1}},
+	{"atan",   {.fn1 = atan, .a_out = 1}},
 
 	{"sinh",   {.fn1 = sinh}},
 	{"cosh",   {.fn1 = cosh}},
@@ -86,7 +80,9 @@ static struct expr_fn fn1[] = {
 	{.name = NULL},
 };
 
-static struct expr_fn fn2[] = {
+
+
+static struct fn fn2[] = {
 	{"mod",   {.fn2 = fmod}},
 	{"rem",   {.fn2 = remainder}},
 	{"max",   {.fn2 = fmax}},
@@ -95,7 +91,7 @@ static struct expr_fn fn2[] = {
 	{"hypot", {.fn2 = hypot}},
 	{"pow",   {.fn2 = pow}},
 
-	{"atan2", {.fn2 = atan2}},
+	{"atan2", {.fn2 = atan2, .a_out = 1}},
 
 	{.name = NULL},
 };
@@ -128,19 +124,19 @@ static const char *var_by_ptr(const struct expr_var vars[], const void *ptr)
 	return NULL;
 }
 
-static void *fn_by_name(struct expr_fn fns[], const char *name)
+static struct expr_fn *fn_by_name(struct fn fns[], const char *name)
 {
 	unsigned int i;
 
 	for (i = 0; fns[i].name; i++) {
 		if (!strcmp(fns[i].name, name))
-			return fns[i].fn.ptr;
+			return &fns[i].fn;
 	}
 
 	return NULL;
 }
 
-static const char *fn_by_ptr(struct expr_fn fns[], const void *ptr)
+static const char *fn_by_ptr(struct fn fns[], const void *ptr)
 {
 	unsigned int i;
 
@@ -481,8 +477,8 @@ struct expr *expr_create(const char *str,
 
 			if (str[i] == '(' && (ptr = fn_by_name(fn1, buf))) {
 				//printf("function(1): '%s'\n", buf);
-				op_stack[op_i].type    = EXPR_FN1;
-				op_stack[op_i].fn1 = ptr;
+				op_stack[op_i].type = EXPR_FN1;
+				op_stack[op_i].fn = ptr;
 				op_i++;
 
 				prev_type = EXPR_FN1;
@@ -492,8 +488,8 @@ struct expr *expr_create(const char *str,
 
 			if (str[i] == '(' && (ptr = fn_by_name(fn2, buf))) {
 				//printf("function(2): '%s'\n", buf);
-				op_stack[op_i].type    = EXPR_FN2;
-				op_stack[op_i].fn2 = ptr;
+				op_stack[op_i].type = EXPR_FN2;
+				op_stack[op_i].fn = ptr;
 				op_i++;
 
 				prev_type = EXPR_FN2;
@@ -739,10 +735,10 @@ void expr_dump(struct expr *self)
 			                        self->elems[i].var));
 		break;
 		case EXPR_FN1:
-			printf("%s(1)", fn_by_ptr(fn1, self->elems[i].fn2));
+			printf("%s(1)", fn_by_ptr(fn1, self->elems[i].fn->fn1));
 		break;
 		case EXPR_FN2:
-			printf("%s(2)", fn_by_ptr(fn2, self->elems[i].fn2));
+			printf("%s(2)", fn_by_ptr(fn2, self->elems[i].fn->fn2));
 		break;
 		default:
 			printf("invalid type %i", self->elems[i].type);
@@ -754,7 +750,37 @@ void expr_dump(struct expr *self)
 	printf("\n");
 }
 
-double expr_eval(struct expr *self)
+static double angle_conv(double angle, struct expr_ctx *ctx)
+{
+	switch (ctx->angle_unit) {
+	case EXPR_DEGREES:
+		return angle * M_PI / 180;
+	break;
+	case EXPR_RADIANS:
+		return angle;
+	break;
+	case EXPR_GRADIANS:
+		return angle * M_PI / 200;
+	break;
+	}
+
+	return 0;
+}
+
+static double eval_fn1(struct expr_elem *fn1, double par, struct expr_ctx *ctx)
+{
+	if (fn1->fn->a1_in)
+		par = angle_conv(par, ctx);
+
+	par = fn1->fn->fn1(par);
+
+	if (fn1->fn->a_out)
+		par = angle_conv(par, ctx);
+
+	return par;
+}
+
+double expr_eval(struct expr *self, struct expr_ctx *ctx)
 {
 	double buf[self->stack];
 	unsigned int i, s = 0;
@@ -787,10 +813,10 @@ double expr_eval(struct expr *self)
 			buf[s++] = *(self->elems[i].var);
 		break;
 		case EXPR_FN1:
-			buf[s - 1] = self->elems[i].fn1(buf[s - 1]);
+			buf[s - 1] = eval_fn1(&self->elems[i], buf[s - 1], ctx);
 		break;
 		case EXPR_FN2:
-			buf[s - 2] =  self->elems[i].fn2(buf[s - 2], buf[s - 1]);
+			buf[s - 2] = self->elems[i].fn->fn2(buf[s - 2], buf[s - 1]);
 			s--;
 		break;
 		}
