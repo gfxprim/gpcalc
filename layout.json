@@ -8,7 +8,8 @@
     "halign": "fill",
     "text": "",
     "uid": "edit",
-    "on_event": "edit_event"
+    "on_event": "edit_event",
+    "focused": true
    },
    {
     "type": "switch",
