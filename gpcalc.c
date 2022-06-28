@@ -156,12 +156,23 @@ int set_angle_unit(gp_widget_event *ev)
 	return 0;
 }
 
+static int app_on_event(gp_widget_event *ev)
+{
+	if (ev->type == GP_WIDGET_EVENT_INPUT)
+		return gp_widget_input_inject(edit, ev);
+
+	return 0;
+}
+
 int main(int argc, char *argv[])
 {
 	gp_widget *layout = gp_app_layout_load("gpcalc", &uids);
 
 	edit = gp_widget_by_uid(uids, "edit", GP_WIDGET_TBOX);
 	layout_switch = gp_widget_by_uid(uids, "layout_switch", GP_WIDGET_SWITCH);
+
+	gp_app_event_unmask(GP_WIDGET_EVENT_INPUT);
+	gp_app_on_event_set(app_on_event);
 
 	gp_widgets_main_loop(layout, "gpcalc", NULL, argc, argv);
 
