@@ -474,7 +474,7 @@ struct expr *expr_create(const char *str,
 
 		/* parse identifiers */
 		case 'a' ... 'z':
-		case 'A' ... 'A':
+		case 'A' ... 'Z':
 			s = i;
 
 			if (parse_ident(str, &i, buf, sizeof(buf), err))
