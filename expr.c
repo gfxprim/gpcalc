@@ -48,7 +48,10 @@ static struct fn fn1[] = {
 
 	{"exp",    {.fn1 = exp}},
 	{"exp2",   {.fn1 = exp2}},
-	{"log",    {.fn1 = log}},
+	{"exp10",  {.fn1 = exp10}},
+	{"ln",     {.fn1 = log}},
+	{"log",    {.fn1 = log10}},
+	{"log2",   {.fn1 = log2}},
 	{"log10",  {.fn1 = log10}},
 
 	{"sqrt",   {.fn1 = sqrt}},
