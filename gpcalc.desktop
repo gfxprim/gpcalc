@@ -4,6 +4,7 @@ GenericName=Calculator
 Version=1.0
 Comment=Scientific Calculator
 Exec=gpcalc
+Icon=/usr/share/gpcalc/gpcalc.png
 Terminal=false
 Type=Application
 Categories=Utility;Calculator;
