@@ -81,6 +81,7 @@ int do_eq(gp_widget_event *ev)
 	expr = expr_create(gp_widget_tbox_text(edit), vars, &err);
 	if (!expr) {
 		gp_widget_tbox_printf(edit, "%i:%s", err.pos, err.err);
+		gp_widget_tbox_clear_on_input(edit);
 		return 0;
 	}
 
