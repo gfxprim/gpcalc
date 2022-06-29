@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=gpcalc
+GenericName=Calculator
+Version=1.0
+Comment=Scientific Calculator
+Exec=gpcalc
+Terminal=false
+Type=Application
+Categories=Utility;Calculator;
