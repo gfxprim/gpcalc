@@ -70,13 +70,10 @@ int do_backspace(gp_widget_event *ev)
 	return 0;
 }
 
-int do_eq(gp_widget_event *ev)
+static int eval(void)
 {
 	struct expr *expr;
 	struct expr_err err;
-
-	if (ev->type != GP_WIDGET_EVENT_WIDGET)
-		return 0;
 
 	expr = expr_create(gp_widget_tbox_text(edit), vars, &err);
 	if (!expr) {
@@ -90,6 +87,16 @@ int do_eq(gp_widget_event *ev)
 	gp_widget_tbox_printf(edit, "%.16g", last_val);
 
 	expr_destroy(expr);
+
+	return 1;
+}
+
+int do_eq(gp_widget_event *ev)
+{
+	if (ev->type != GP_WIDGET_EVENT_WIDGET)
+		return 0;
+
+	eval();
 
 	return 1;
 }
@@ -177,10 +184,16 @@ int set_angle_unit(gp_widget_event *ev)
 
 static int app_on_event(gp_widget_event *ev)
 {
-	if (ev->type == GP_WIDGET_EVENT_INPUT)
-		return gp_widget_input_inject(edit, ev);
+	if (ev->type != GP_WIDGET_EVENT_INPUT)
+		return 0;
 
-	return 0;
+	if (ev->input_ev->type == GP_EV_UTF &&
+	    ev->input_ev->utf.ch == '=') {
+		eval();
+		return 1;
+	}
+
+	return gp_widget_input_inject(edit, ev);
 }
 
 int main(int argc, char *argv[])
