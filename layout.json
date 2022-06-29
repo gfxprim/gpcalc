@@ -41,7 +41,7 @@
        {"type": "button", "label": "9", "align": "fill", "on_event": "do_append"},
        {"type": "button", "label": "6", "align": "fill", "on_event": "do_append"},
        {"type": "button", "label": "3", "align": "fill", "on_event": "do_append"},
-       {"type": "button", "label": ",", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "E", "align": "fill", "on_event": "do_append"},
        {"type": "button", "btype": "last", "align": "fill", "on_event": "cursor_end"},
        {"type": "button", "label": "+", "align": "fill", "on_event": "do_append"},
        {"type": "button", "label": "-", "align": "fill", "on_event": "do_append"},
