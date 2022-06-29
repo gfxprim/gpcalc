@@ -185,6 +185,8 @@ static int parse_ident(const char *in, unsigned int *i,
 		switch (in[*i]) {
 		case 'a' ... 'z':
 		case 'A' ... 'Z':
+		case '0' ... '9':
+		case '_':
 			/* res too small */
 			if (j == res_size - 1) {
 				ERR(err, "Identifier too long", *i);
