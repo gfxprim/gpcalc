@@ -123,6 +123,24 @@ int do_append(gp_widget_event *ev)
 	return 1;
 }
 
+int cursor_home(gp_widget_event *ev)
+{
+	if (ev->type != GP_WIDGET_EVENT_WIDGET)
+		return 0;
+
+	gp_widget_tbox_cursor_set(edit, 0, GP_SEEK_SET);
+	return 0;
+}
+
+int cursor_end(gp_widget_event *ev)
+{
+	if (ev->type != GP_WIDGET_EVENT_WIDGET)
+		return 0;
+
+	gp_widget_tbox_cursor_set(edit, 0, GP_SEEK_END);
+	return 0;
+}
+
 int prev_layout(gp_widget_event *ev)
 {
 	if (ev->type != GP_WIDGET_EVENT_WIDGET)

@@ -17,36 +17,42 @@
     "align": "fill",
     "widgets": [
      {
-      "rows": 4,
+      "rows": 5,
       "cols": 6,
       "uniform": true,
       "border": "none",
       "align": "fill",
       "widgets": [
-       {"type": "button", "btype": "prev", "align": "fill", "on_event": "prev_layout"},
+       {"type": "button", "btype": "left", "align": "fill", "on_event": "prev_layout"},
        {"type": "button", "label": "sqrt(", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "cbrt(", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": "^", "align": "fill", "on_event": "do_append"},
        {"type": "button", "label": "(", "align": "fill", "on_event": "do_append"},
-       {"type": "button", "label": ")", "align": "fill", "on_event": "do_append"},
        {"type": "button", "label": "7", "align": "fill", "on_event": "do_append"},
        {"type": "button", "label": "4", "align": "fill", "on_event": "do_append"},
        {"type": "button", "label": "1", "align": "fill", "on_event": "do_append"},
        {"type": "button", "label": "0", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": ")", "align": "fill", "on_event": "do_append"},
        {"type": "button", "label": "8", "align": "fill", "on_event": "do_append"},
        {"type": "button", "label": "5", "align": "fill", "on_event": "do_append"},
        {"type": "button", "label": "2", "align": "fill", "on_event": "do_append"},
        {"type": "button", "label": ".", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "btype": "first", "align": "fill", "on_event": "cursor_home"},
        {"type": "button", "label": "9", "align": "fill", "on_event": "do_append"},
        {"type": "button", "label": "6", "align": "fill", "on_event": "do_append"},
        {"type": "button", "label": "3", "align": "fill", "on_event": "do_append"},
-       {"type": "button", "label": "^", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "label": ",", "align": "fill", "on_event": "do_append"},
+       {"type": "button", "btype": "last", "align": "fill", "on_event": "cursor_end"},
        {"type": "button", "label": "+", "align": "fill", "on_event": "do_append"},
        {"type": "button", "label": "-", "align": "fill", "on_event": "do_append"},
        {"type": "button", "label": "\u00d7", "align": "fill", "on_event": "do_append"},
        {"type": "button", "label": "\u00f7", "align": "fill", "on_event": "do_append"},
-       {"type": "button", "btype": "next", "align": "fill", "on_event": "next_layout"},
+       {"type": "button", "btype": "up", "align": "fill", "on_event": "prev_input"},
+       {"type": "button", "btype": "right", "align": "fill", "on_event": "next_layout"},
        {"type": "button", "btype": "clear", "align": "fill", "on_event": "clear"},
        {"type": "button", "btype": "backspace", "align": "fill", "on_event": "do_backspace"},
-       {"type": "button", "label": "=", "align": "fill", "on_event": "do_eq"}
+       {"type": "button", "label": "=", "align": "fill", "on_event": "do_eq"},
+       {"type": "button", "btype": "down", "align": "fill", "on_event": "next_input"}
       ]
      },
      {
@@ -56,7 +62,7 @@
        "border": "none",
        "align": "fill",
        "widgets": [
-        {"type": "button", "btype": "prev", "align": "fill", "on_event": "prev_layout"},
+        {"type": "button", "btype": "left", "align": "fill", "on_event": "prev_layout"},
         {"type": "button", "label": "pow(", "align": "fill", "on_event": "do_append"},
         {"type": "button", "label": "cbrt(", "align": "fill", "on_event": "do_append"},
         {"type": "button", "label": ",", "align": "fill", "on_event": "do_append"},
@@ -76,7 +82,7 @@
         {"type": "button", "label": "F<-", "align": "fill", "on_event": "var_store"},
         {"type": "button", "label": "G<-", "align": "fill", "on_event": "var_store"},
         {"type": "button", "label": "H<-", "align": "fill", "on_event": "var_store"},
-        {"type": "button", "btype": "next", "align": "fill", "on_event": "next_layout"},
+        {"type": "button", "btype": "right", "align": "fill", "on_event": "next_layout"},
         {"type": "button", "label": "mod(", "align": "fill", "on_event": "do_append"},
         {"type": "button", "label": "rem(", "align": "fill", "on_event": "do_append"},
         {"type": "button", "label": "atan2(", "align": "fill", "on_event": "do_append"}
@@ -89,7 +95,7 @@
        "border": "none",
        "align": "fill",
        "widgets": [
-        {"type": "button", "btype": "prev", "align": "fill", "on_event": "prev_layout"},
+        {"type": "button", "btype": "left", "align": "fill", "on_event": "prev_layout"},
         {"type": "button", "label": "sin(", "align": "fill", "on_event": "do_append"},
         {"type": "button", "label": "cos(", "align": "fill", "on_event": "do_append"},
         {"type": "button", "label": "tan(", "align": "fill", "on_event": "do_append"},
@@ -109,7 +115,7 @@
         {"type": "button", "label": "pi", "align": "fill", "on_event": "do_append"},
         {"type": "button", "label": "ceil(", "align": "fill", "on_event": "do_append"},
         {"type": "button", "label": "floor(", "align": "fill", "on_event": "do_append"},
-        {"type": "button", "btype": "next", "align": "fill", "on_event": "next_layout"},
+        {"type": "button", "btype": "right", "align": "fill", "on_event": "next_layout"},
         {"type": "button", "label": "e", "align": "fill", "on_event": "do_append"},
 	{"type": "button", "label": "trunc(", "align": "fill", "on_event": "do_append"},
         {"type": "button", "label": "round(", "align": "fill", "on_event": "do_append"}
@@ -128,12 +134,12 @@
         "halign": "fill",
         "valign": "top",
         "widgets": [
-         {"type": "button", "btype": "prev", "align": "hfill", "on_event": "prev_layout"},
+         {"type": "button", "btype": "left", "align": "hfill", "on_event": "prev_layout"},
          null,
 	 null,
 	 null,
 	 null,
-	 {"type": "button", "btype": "next", "align": "hfill", "on_event": "next_layout"}
+	 {"type": "button", "btype": "right", "align": "hfill", "on_event": "next_layout"}
         ]
        },
        {
