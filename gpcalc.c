@@ -118,7 +118,7 @@ int do_append(gp_widget_event *ev)
 	if (!strcmp(label, "\u00f7"))
 		label = "/";
 
-	gp_widget_tbox_ins(edit, 0, GP_SEEK_END, label);
+	gp_widget_tbox_ins(edit, 0, GP_SEEK_CUR, label);
 
 	return 1;
 }
