@@ -1,8 +1,8 @@
-//SPDX-License-Identifier: GPL-2.1-or-later
+//SPDX-License-Identifier: GPL-2.0-or-later
 
 /*
 
-    Copyright (C) 2007-2021 Cyril Hrubis <metan@ucw.cz>
+    Copyright (C) 2007-2022 Cyril Hrubis <metan@ucw.cz>
 
  */
 
@@ -196,9 +196,23 @@ static int app_on_event(gp_widget_event *ev)
 	return gp_widget_input_inject(edit, ev);
 }
 
+static gp_app_info app_info = {
+	.name = "gpcalc",
+	.desc = "A scientific calculator",
+	.version = "1.0",
+	.license = "GPL-2.0-or-later",
+	.url = "http://github.com/gfxprim/gpcalc",
+	.authors = (gp_app_info_author []) {
+		{.name = "Cyril Hrubis", .email = "metan@ucw.cz", .years = "2007-2022"},
+		{}
+	}
+};
+
 int main(int argc, char *argv[])
 {
 	gp_widget *layout = gp_app_layout_load("gpcalc", &uids);
+
+	gp_app_info_set(&app_info);
 
 	edit = gp_widget_by_uid(uids, "edit", GP_WIDGET_TBOX);
 	layout_switch = gp_widget_by_uid(uids, "layout_switch", GP_WIDGET_SWITCH);
