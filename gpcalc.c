@@ -127,7 +127,7 @@ static int is_func(const char *str)
 	return last_chr(str) == '(';
 }
 
-static int is_op(int ch)
+static int is_op_fn(int ch)
 {
 	switch (ch) {
 	case '*':
@@ -135,19 +135,20 @@ static int is_op(int ch)
 	case '-':
 	case '/':
 	case '^':
+	case '(':
 		return 1;
 	default:
 		return 0;
 	}
 }
 
-static int op_before_cur_pos(gp_widget *tbox)
+static int op_fn_before_cur_pos(gp_widget *tbox)
 {
 	gp_utf8_pos cur_pos = gp_widget_tbox_cursor_get(tbox);
 
 	int ch = gp_utf8_pos_prev(tbox->tbox->buf, &cur_pos);
 
-	return is_op(ch);
+	return is_op_fn(ch);
 }
 
 int do_append(gp_widget_event *ev)
@@ -164,7 +165,7 @@ int do_append(gp_widget_event *ev)
 		label = "/";
 
 	int ins_whence = GP_SEEK_CUR;
-	if (is_func(label) && !op_before_cur_pos(edit))
+	if (is_func(label) && !op_fn_before_cur_pos(edit))
 		ins_whence = GP_SEEK_SET;
 
 	gp_widget_tbox_ins(edit, 0, ins_whence, label);
