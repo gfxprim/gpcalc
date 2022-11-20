@@ -70,10 +70,33 @@ int do_backspace(gp_widget_event *ev)
 	return 0;
 }
 
+static void close_parens(void)
+{
+	const char *buf = gp_widget_tbox_text(edit);
+	int pars = 0;
+	uint32_t ch;
+
+	while ((ch = gp_utf8_next(&buf))) {
+		switch (ch) {
+		case '(':
+			pars++;
+		break;
+		case ')':
+			pars--;
+		break;
+		}
+	}
+
+	while (pars-- > 0)
+		gp_widget_tbox_append(edit, ")");
+}
+
 static int eval(void)
 {
 	struct expr *expr;
 	struct expr_err err;
+
+	close_parens();
 
 	expr = expr_create(gp_widget_tbox_text(edit), vars, &err);
 	if (!expr) {
