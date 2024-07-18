@@ -38,7 +38,7 @@ int var_store(gp_widget_event *ev)
 	if (ev->type != GP_WIDGET_EVENT_WIDGET)
 		return 0;
 
-	const char *label = ev->self->button->label;
+	const char *label = gp_widget_button_label_get(ev->self);
 
 	if (label[0] < 'A' || label[0] > 'H')
 		return 0;
@@ -179,7 +179,7 @@ int do_append(gp_widget_event *ev)
 	if (ev->type != GP_WIDGET_EVENT_WIDGET)
 		return 0;
 
-	const char *label = ev->self->button->label;
+	const char *label = gp_widget_button_label_get(ev->self);
 
 	if (!strcmp(label, "\u00d7"))
 		label = "*";
@@ -219,7 +219,7 @@ int prev_layout(gp_widget_event *ev)
 	if (ev->type != GP_WIDGET_EVENT_WIDGET)
 		return 0;
 
-	gp_widget_switch_move(layout_switch, -1);
+	gp_widget_layout_switch_move(layout_switch, -1);
 	return 0;
 }
 
@@ -228,7 +228,7 @@ int next_layout(gp_widget_event *ev)
 	if (ev->type != GP_WIDGET_EVENT_WIDGET)
 		return 0;
 
-	gp_widget_switch_move(layout_switch, 1);
+	gp_widget_layout_switch_move(layout_switch, 1);
 	return 0;
 }
 

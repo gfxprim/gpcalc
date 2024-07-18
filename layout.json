@@ -12,7 +12,7 @@
     "focused": true
    },
    {
-    "type": "switch",
+    "type": "layout_switch",
     "uid": "layout_switch",
     "align": "fill",
     "widgets": [
