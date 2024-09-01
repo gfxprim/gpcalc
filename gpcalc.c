@@ -169,7 +169,7 @@ static int op_fn_before_cur_pos(gp_widget *tbox)
 {
 	gp_utf8_pos cur_pos = gp_widget_tbox_cursor_get(tbox);
 
-	int ch = gp_utf8_pos_prev(tbox->tbox->buf, &cur_pos);
+	int ch = gp_utf8_pos_prev(gp_widget_tbox_text(tbox), &cur_pos);
 
 	return is_op_fn(ch);
 }
