@@ -253,8 +253,8 @@ static int app_on_event(gp_widget_event *ev)
 	if (ev->type != GP_WIDGET_EVENT_INPUT)
 		return 0;
 
-	if (ev->input_ev->type == GP_EV_UTF &&
-	    ev->input_ev->utf.ch == '=') {
+	if (ev->input_ev->type == GP_EV_KEY &&
+	    ev->input_ev->key.utf == '=') {
 		eval();
 		return 1;
 	}
