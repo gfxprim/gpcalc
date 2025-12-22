@@ -279,7 +279,7 @@ int main(int argc, char *argv[])
 	gp_widget *layout = gp_app_layout_load("gpcalc", &uids);
 
 	edit = gp_widget_by_uid(uids, "edit", GP_WIDGET_TBOX);
-	layout_switch = gp_widget_by_uid(uids, "layout_switch", GP_WIDGET_SWITCH);
+	layout_switch = gp_widget_by_uid(uids, "layout_switch", GP_WIDGET_LAYOUT_SWITCH);
 
 	gp_app_event_unmask(GP_WIDGET_EVENT_INPUT);
 	gp_app_on_event_set(app_on_event);
